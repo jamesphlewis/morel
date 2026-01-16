@@ -1,0 +1,33 @@
+Line 1: This is a test file for morel
+Line 2: Morel is a live file pager
+Line 3: It automatically updates when the file changes
+Line 4: You can scroll with Space (page) and Enter (line)
+Line 5: Press 'b' to scroll back up
+Line 6: Press 'g' to jump to the start
+Line 7: Press 'G' to jump to the end
+Line 8: Press 'h' or '?' for help
+Line 9: Press 'q' to quit
+Line 10: This file has many lines to test scrolling
+Line 11: Keep scrolling...
+Line 12: More content here
+Line 13: And more...
+Line 14: Line fourteen
+Line 15: Line fifteen
+Line 16: Line sixteen
+Line 17: Line seventeen
+Line 18: Line eighteen
+Line 19: Line nineteen
+Line 20: Line twenty
+Line 21: Line twenty-one
+Line 22: Line twenty-two
+Line 23: Line twenty-three
+Line 24: Line twenty-four
+Line 25: Line twenty-five
+Line 26: Line twenty-six
+Line 27: Line twenty-seven
+Line 28: Line twenty-eight
+Line 29: Line twenty-nine
+Line 30: Line thirty
+Line 31: Almost at the end...
+Line 32: Getting closer...
+Line 33: This is the last line!

@@ -1,0 +1,19 @@
+[package]
+name = "morel"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Terminal control
+crossterm = "0.27"
+# File watching
+notify = "6.1"
+notify-debouncer-full = "0.3"
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+# Async runtime
+tokio = { version = "1", features = ["sync"] }
+
+[dev-dependencies]
+tempfile = "3"
