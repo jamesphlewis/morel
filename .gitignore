@@ -1,1 +1,22 @@
-target
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test files
+test*.txt
+sample*.txt
+*.log
+
+# Build artifacts
+debug/
+release/

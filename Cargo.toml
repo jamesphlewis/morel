@@ -2,6 +2,14 @@
 name = "morel"
 version = "0.1.0"
 edition = "2021"
+authors = ["morel contributors"]
+description = "A live file pager that automatically updates when files change"
+readme = "README.md"
+homepage = "https://github.com/yourusername/morel"
+repository = "https://github.com/yourusername/morel"
+license = "MIT"
+keywords = ["pager", "viewer", "terminal", "cli", "file-watcher"]
+categories = ["command-line-utilities", "filesystem"]
 
 [dependencies]
 # Terminal control
