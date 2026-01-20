@@ -117,27 +117,35 @@ impl App {
                 self.running = false;
             }
             Command::ScrollDownPage => {
+                self.status_message = None;
                 self.view_state.scroll_down_page();
             }
             Command::ScrollDownLine => {
+                self.status_message = None;
                 self.view_state.scroll_down_line();
             }
             Command::ScrollUpPage => {
+                self.status_message = None;
                 self.view_state.scroll_up_page();
             }
             Command::ScrollUpLine => {
+                self.status_message = None;
                 self.view_state.scroll_up_line();
             }
             Command::JumpToLine(line) => {
+                self.status_message = None;
                 self.view_state.jump_to_line(line);
             }
             Command::JumpToPercentage(percent) => {
+                self.status_message = None;
                 self.view_state.jump_to_percentage(percent);
             }
             Command::JumpToStart => {
+                self.status_message = None;
                 self.view_state.jump_to_start();
             }
             Command::JumpToEnd => {
+                self.status_message = None;
                 self.view_state.jump_to_end();
             }
             Command::Refresh => {
@@ -151,6 +159,7 @@ impl App {
                         self.status_message = Some("[Refreshed]".to_string());
                     }
                 }
+                self.view_state.needs_redraw = true;
             }
             Command::Help => {
                 self.show_help()?;
