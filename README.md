@@ -17,12 +17,12 @@ Traditional pagers like `more` and `less` show a static snapshot of a file. If t
 
 ## Features
 
-✨ **Live Updates** - Automatically refreshes when the file is modified, appended, or truncated
-⬆️⬇️ **Full Navigation** - Scroll forward and backward through files
-🎯 **Jump Commands** - Jump to specific lines, percentages, start, or end
-🖥️ **Cross-Platform** - Works on macOS, Linux, and Windows
-🛡️ **Safe Exit** - Properly restores terminal state even on crashes
-⚡ **Efficient** - Debounced file watching prevents excessive reloads
+- ✨ **Live Updates** - Automatically refreshes when the file is modified, appended, or truncated
+- ⬆️⬇️ **Full Navigation** - Scroll forward and backward through files
+- 🎯 **Jump Commands** - Jump to specific lines, percentages, start, or end
+- 🖥️ **Cross-Platform** - Works on macOS, Linux, and Windows
+- 🛡️ **Safe Exit** - Properly restores terminal state even on crashes
+- ⚡ **Efficient** - Debounced file watching prevents excessive reloads
 
 ## Installation
 
