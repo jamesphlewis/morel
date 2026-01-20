@@ -22,17 +22,24 @@ pub struct FileWatcher {
 impl FileWatcher {
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
         let path = path.as_ref().to_path_buf();
-        let watched_path = path.clone();
+        let watched_path = path.canonicalize().unwrap_or_else(|_| path.clone());
 
         let (tx, rx) = channel();
 
         // Create debouncer with 100ms timeout
         let mut debouncer = new_debouncer(Duration::from_millis(100), None, tx)?;
 
-        // Watch the specific file
+        // Watch the parent directory for better compatibility across platforms
+        // Watching a file directly doesn't always work, especially on macOS
+        let watch_path = if watched_path.is_file() {
+            watched_path.parent().unwrap_or(&watched_path)
+        } else {
+            &watched_path
+        };
+
         debouncer
             .watcher()
-            .watch(&path, RecursiveMode::NonRecursive)?;
+            .watch(watch_path, RecursiveMode::NonRecursive)?;
 
         Ok(Self {
             _debouncer: debouncer,
@@ -51,14 +58,26 @@ impl FileWatcher {
                 let mut was_created = false;
 
                 for event in events {
-                    for path in &event.paths {
-                        if path == &self.watched_path {
-                            match event.kind {
-                                notify::EventKind::Modify(_) => was_modified = true,
-                                notify::EventKind::Remove(_) => was_deleted = true,
-                                notify::EventKind::Create(_) => was_created = true,
-                                _ => {}
+                    // Filter events to only process our watched file
+                    let is_our_file = event.paths.iter().any(|p| {
+                        p == &self.watched_path ||
+                        p.canonicalize().ok().as_ref() == Some(&self.watched_path)
+                    });
+
+                    if is_our_file {
+                        match event.kind {
+                            notify::EventKind::Modify(_) => was_modified = true,
+                            notify::EventKind::Remove(_) => was_deleted = true,
+                            notify::EventKind::Create(_) => was_created = true,
+                            notify::EventKind::Access(_) => {
+                                // Some systems generate access events for modifications
+                                was_modified = true;
                             }
+                            notify::EventKind::Any => {
+                                // Treat generic events as modifications
+                                was_modified = true;
+                            }
+                            _ => {}
                         }
                     }
                 }

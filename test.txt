@@ -1,5 +1,8 @@
-Line 1: This is a test file for morel
-Line 2: Morel is a live file pager
+ALine 1: This is a test file for morel
+Lin
+
+
+e 2: Morel is a live file pager
 Line 3: It automatically updates when the file changes
 Line 4: You can scroll with Space (page) and Enter (line)
 Line 5: Press 'b' to scroll back up

@@ -79,19 +79,23 @@ impl App {
                         self.view_state
                             .update_total_lines(self.file_reader.total_lines());
                         self.status_message = Some("[File appended]".to_string());
+                        self.view_state.needs_redraw = true;
                     }
                     ReloadResult::Truncated => {
                         self.view_state
                             .update_total_lines(self.file_reader.total_lines());
                         self.status_message = Some("[File truncated]".to_string());
+                        self.view_state.needs_redraw = true;
                     }
                     ReloadResult::Modified => {
                         self.view_state
                             .update_total_lines(self.file_reader.total_lines());
                         self.status_message = Some("[File modified]".to_string());
+                        self.view_state.needs_redraw = true;
                     }
                     ReloadResult::Deleted => {
                         self.status_message = Some("[File deleted - showing last content]".to_string());
+                        self.view_state.needs_redraw = true;
                     }
                 }
             }
@@ -100,11 +104,7 @@ impl App {
                 self.view_state.needs_redraw = true;
             }
             FileEvent::NoChange => {
-                // Clear status message after a few renders
-                if self.status_message.is_some() {
-                    self.status_message = None;
-                    self.view_state.needs_redraw = true;
-                }
+                // Don't clear status message too quickly - let it persist
             }
         }
 
